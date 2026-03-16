@@ -1142,19 +1142,51 @@
         }
 
         function parseSMS(text) {
+            // Novo padrão para o formato:
+            // "Purchase of AED 716.55 with Credit Card ending 2158 at e& Digital App, Abu Dhabi. Avl Cr. Limit is AED 28,432.24"
+            
             const patterns = [
-                // Padrão genérico AED - aceita qualquer número de cartão
+                // Padrão 1: Purchase of AED XXX.XX with Credit Card ending XXXX at [Local], [Cidade]. Avl Cr. Limit is AED XX,XXX.XX
+                /Purchase\s+of\s+AED\s+([\d,]+\.?\d*)\s+with\s+Credit\s+Card\s+ending\s+(\d+)\s+at\s+([^,]+),\s*([^.]+)\.\s*Avl\s+Cr\.\s+Limit\s+is\s+AED\s+([\d,]+\.?\d*)/i,
+                
+                // Padrão 2: Formato anterior - AED com data e hora
                 /(?:AED|aed)\s*([\d,\.]+).*?on\s+([\d\/]+)\s+([\d:]+).*?at\s+([^,]+)/i,
-                // Padrão R$/USD/EUR
+                
+                // Padrão 3: R$/USD/EUR
                 /(?:R\$|USD|EUR)\s*([\d,\.]+).*?(\d{2}\/\d{2}\/\d{4}).*?(\d{2}:\d{2}:\d{2}).*?(?:at|em)\s+([^,\.]+)/i,
-                // Padrão alternativo para diferentes formatos
+                
+                // Padrão 4: Genérico
                 /(?:valor|value|amount).*?([\d,\.]+).*?(?:data|date).*?(\d{2}\/\d{2}\/\d{4}).*?(\d{2}:\d{2}:\d{2}).*?(?:estabelecimento|merchant).*?([^\n]+)/i,
             ];
-            for (let p of patterns) {
-                const m = text.match(p);
+            
+            // Tentar padrão 1 (novo formato)
+            const match1 = text.match(patterns[0]);
+            if (match1) {
+                const now = new Date();
+                const day = String(now.getDate()).padStart(2, '0');
+                const month = String(now.getMonth() + 1).padStart(2, '0');
+                const year = now.getFullYear();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                
+                return {
+                    amount: parseFloat(match1[1].replace(/,/g, '')),
+                    date: `${day}/${month}/${year}`,
+                    time: `${hours}:${minutes}:${seconds}`,
+                    merchant: match1[3].trim() + ', ' + match1[4].trim(),
+                    cardNumber: match1[2],
+                    availableLimit: parseFloat(match1[5].replace(/,/g, '')),
+                    id: Date.now()
+                };
+            }
+            
+            // Tentar outros padrões
+            for (let i = 1; i < patterns.length; i++) {
+                const m = text.match(patterns[i]);
                 if (m) {
                     return {
-                        amount: parseFloat(m[1].replace(',', '')),
+                        amount: parseFloat(m[1].replace(/,/g, '')),
                         date: m[2],
                         time: m[3],
                         merchant: m[4].trim(),
@@ -1162,6 +1194,7 @@
                     };
                 }
             }
+            
             return null;
         }
 
@@ -3963,7 +3996,7 @@
                                 </div>
                                 <textarea id="smsInput" placeholder="Cole aqui o SMS..." oninput="state.sms=this.value">${state.sms}</textarea>
                                 <div style="font-size:0.8rem; opacity:0.7; margin-top:8px;">
-                                    Exemplo: Your Cr.Card XXXXX was used for AED34.65 on 03/12/2025 16:20:26 at ALMAQAM AUTOMATIC BR...
+                                    Exemplo: Purchase of AED 716.55 with Credit Card ending 2158 at e& Digital App, Abu Dhabi. Avl Cr. Limit is AED 28,432.24
                                 </div>
                             </div>
                         ` : `
