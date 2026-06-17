@@ -12,6 +12,7 @@
     <style>
     /* ============================================
        DESIGN SYSTEM — COCKPIT NIGHT MODE
+       Palette: deep navy base, teal accent, amber alert
     ============================================ */
     :root {
         --bg:          #080D1A;
@@ -37,7 +38,9 @@
         --radius-md:   12px;
         --radius-lg:   16px;
     }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
         font-family: 'Inter', -apple-system, sans-serif;
         background: var(--bg);
@@ -45,13 +48,25 @@
         min-height: 100vh;
         padding: 20px;
         padding-bottom: 100px;
+        /* Subtle grid texture */
         background-image:
             linear-gradient(rgba(0,212,170,0.015) 1px, transparent 1px),
             linear-gradient(90deg, rgba(0,212,170,0.015) 1px, transparent 1px);
         background-size: 40px 40px;
     }
+
     .container { max-width: 500px; margin: 0 auto; }
-    h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-1); margin-bottom: 24px; }
+
+    h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--text-1);
+        margin-bottom: 24px;
+    }
+
+    /* ── CARDS ─────────────────────────────── */
     .card {
         background: var(--surface);
         border: 1px solid var(--border);
@@ -61,6 +76,7 @@
         position: relative;
         overflow: hidden;
     }
+    /* Teal left-edge accent on cards */
     .card::before {
         content: '';
         position: absolute;
@@ -70,65 +86,263 @@
         border-radius: 0 3px 3px 0;
         opacity: 0.6;
     }
-    .balance { text-align: center; font-size: 2.6rem; font-weight: 700; margin: 16px 0; font-variant-numeric: tabular-nums; color: var(--text-1); letter-spacing: -0.01em; }
-    .meta { display: flex; justify-content: space-around; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+
+    .balance {
+        text-align: center;
+        font-size: 2.6rem;
+        font-weight: 700;
+        margin: 16px 0;
+        font-variant-numeric: tabular-nums;
+        color: var(--text-1);
+        letter-spacing: -0.01em;
+    }
+
+    .meta {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+    }
     .meta-item { text-align: center; }
     .meta-label { font-size: 0.75rem; color: var(--text-2); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
     .meta-value { font-size: 1.2rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+    /* ── TABS ─────────────────────────────── */
     .tabs {
-        display: flex; gap: 4px; margin-bottom: 20px;
-        overflow-x: auto; overflow-y: hidden;
-        -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; padding-bottom: 4px;
-        background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 4px;
+        display: flex;
+        gap: 4px;
+        margin-bottom: 20px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding-bottom: 4px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 4px;
     }
     .tabs::-webkit-scrollbar { display: none; }
-    .tab { flex: 1; min-width: fit-content; padding: 9px 8px; background: transparent; border: none; border-radius: var(--radius-sm); color: var(--text-2); font-weight: 600; cursor: pointer; transition: all 0.2s; font-size: 0.65rem; white-space: nowrap; letter-spacing: 0.03em; text-transform: uppercase; }
+
+    .tab {
+        flex: 1;
+        min-width: fit-content;
+        padding: 9px 8px;
+        background: transparent;
+        border: none;
+        border-radius: var(--radius-sm);
+        color: var(--text-2);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.65rem;
+        white-space: nowrap;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+    }
     .tab:hover { color: var(--text-1); background: var(--surface-3); }
-    .tab.active { background: var(--teal); color: #080D1A; font-weight: 700; }
+    .tab.active {
+        background: var(--teal);
+        color: #080D1A;
+        font-weight: 700;
+    }
+
+    /* ── INPUTS ───────────────────────────── */
     .input-group { margin-bottom: 14px; }
-    .label { display: block; margin-bottom: 7px; font-weight: 600; font-size: 0.8rem; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.06em; }
-    input, textarea, select { width: 100%; padding: 11px 14px; background: var(--surface-2); border: 1px solid var(--border-2); border-radius: var(--radius-sm); font-size: 0.95rem; color: var(--text-1); font-family: inherit; transition: border-color 0.2s; }
-    input:focus, textarea:focus, select:focus { outline: none; border-color: var(--teal); background: var(--surface-3); }
+    .label {
+        display: block;
+        margin-bottom: 7px;
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: var(--text-2);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+    input, textarea, select {
+        width: 100%;
+        padding: 11px 14px;
+        background: var(--surface-2);
+        border: 1px solid var(--border-2);
+        border-radius: var(--radius-sm);
+        font-size: 0.95rem;
+        color: var(--text-1);
+        font-family: inherit;
+        transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--teal);
+        background: var(--surface-3);
+    }
     input[type="date"], input[type="time"] { color-scheme: dark; }
-    input[type="date"]::-webkit-calendar-picker-indicator, input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(0.6); }
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="time"]::-webkit-calendar-picker-indicator { filter: invert(0.6); }
+
     textarea { min-height: 90px; resize: vertical; }
+
     select option { background: var(--surface-2); color: var(--text-1); }
-    .btn { width: 100%; padding: 13px; background: var(--teal); border: none; border-radius: var(--radius-sm); color: #080D1A; font-size: 0.9rem; font-weight: 700; cursor: pointer; margin-top: 10px; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.2s; }
+
+    /* ── BUTTONS ─────────────────────────── */
+    .btn {
+        width: 100%;
+        padding: 13px;
+        background: var(--teal);
+        border: none;
+        border-radius: var(--radius-sm);
+        color: #080D1A;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+        margin-top: 10px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        transition: all 0.2s;
+    }
     .btn:hover { background: #00E8BB; }
     .btn:active { transform: scale(0.98); }
     .btn:disabled { opacity: 0.35; cursor: not-allowed; }
-    .btn-secondary { background: var(--surface-3); color: var(--text-1); border: 1px solid var(--border-2); }
+    .btn-secondary {
+        background: var(--surface-3);
+        color: var(--text-1);
+        border: 1px solid var(--border-2);
+    }
     .btn-secondary:hover { background: var(--surface-2); }
-    .category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
-    .category-option { background: var(--surface-2); padding: 12px 8px; border-radius: var(--radius-sm); border: 1px solid var(--border); cursor: pointer; transition: all 0.2s; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+
+    /* ── CATEGORY GRID ───────────────────── */
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-top: 10px;
+    }
+    .category-option {
+        background: var(--surface-2);
+        padding: 12px 8px;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border);
+        cursor: pointer;
+        transition: all 0.2s;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+    }
     .category-option:hover { background: var(--surface-3); border-color: var(--border-2); }
     .category-option:active { transform: scale(0.96); }
-    .category-option.selected { background: var(--teal-dim); border-color: var(--teal); }
+    .category-option.selected {
+        background: var(--teal-dim);
+        border-color: var(--teal);
+    }
     .category-icon { font-size: 1.6rem; }
     .category-name { font-size: 0.7rem; font-weight: 600; color: var(--text-2); }
     .category-option.selected .category-name { color: var(--teal); }
-    .expense-item { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s; }
+
+    /* ── EXPENSE LIST ─────────────────────── */
+    .expense-item {
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 12px 14px;
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: border-color 0.2s;
+    }
     .expense-item:hover { border-color: var(--border-2); }
     .expense-info { flex: 1; }
     .expense-merchant { font-weight: 600; margin-bottom: 3px; font-size: 0.95rem; }
     .expense-date { font-size: 0.78rem; color: var(--text-2); }
-    .expense-category { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin-top: 4px; opacity: 0.85; }
-    .expense-amount { font-size: 1.1rem; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--text-1); }
-    .delete-btn { background: var(--red-dim); border: 1px solid rgba(239,68,68,0.2); color: var(--red); padding: 7px 10px; border-radius: var(--radius-sm); margin-left: 8px; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
+    .expense-category {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        margin-top: 4px;
+        opacity: 0.85;
+    }
+    .expense-amount {
+        font-size: 1.1rem;
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        color: var(--text-1);
+    }
+    .delete-btn {
+        background: var(--red-dim);
+        border: 1px solid rgba(239,68,68,0.2);
+        color: var(--red);
+        padding: 7px 10px;
+        border-radius: var(--radius-sm);
+        margin-left: 8px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: all 0.2s;
+    }
     .delete-btn:hover { background: rgba(239,68,68,0.25); }
-    .edit-btn { background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.2); color: #60A5FA; padding: 7px 10px; border-radius: var(--radius-sm); margin-left: 8px; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
+    .edit-btn {
+        background: rgba(59,130,246,0.12);
+        border: 1px solid rgba(59,130,246,0.2);
+        color: #60A5FA;
+        padding: 7px 10px;
+        border-radius: var(--radius-sm);
+        margin-left: 8px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: all 0.2s;
+    }
     .edit-btn:hover { background: rgba(59,130,246,0.22); }
-    .progress-bar { width: 100%; height: 6px; background: var(--surface-3); border-radius: 3px; overflow: hidden; margin: 12px 0; }
-    .progress-fill { height: 100%; background: var(--teal); border-radius: 3px; transition: width 0.5s; }
+
+    /* ── PROGRESS BARS ────────────────────── */
+    .progress-bar {
+        width: 100%;
+        height: 6px;
+        background: var(--surface-3);
+        border-radius: 3px;
+        overflow: hidden;
+        margin: 12px 0;
+    }
+    .progress-fill {
+        height: 100%;
+        background: var(--teal);
+        border-radius: 3px;
+        transition: width 0.5s;
+    }
     .progress-fill.warning { background: var(--amber); }
     .progress-fill.danger { background: var(--red); }
+
+    /* ── STATS GRID ──────────────────────── */
     .empty { text-align: center; padding: 40px; color: var(--text-3); }
     .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
-    .stat-card { background: var(--surface-2); border: 1px solid var(--border); padding: 14px; border-radius: var(--radius-sm); text-align: center; }
+    .stat-card {
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        padding: 14px;
+        border-radius: var(--radius-sm);
+        text-align: center;
+    }
     .stat-label { font-size: 0.72rem; color: var(--text-2); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
     .stat-value { font-size: 1.3rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+    /* ── MONTH HISTORY ────────────────────── */
     .month-group { margin-bottom: 20px; }
-    .month-header { display: flex; justify-content: space-between; align-items: center; padding: 11px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); font-weight: 700; font-size: 0.95rem; margin-bottom: 8px; cursor: pointer; transition: all 0.2s; }
+    .month-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 11px 16px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        font-weight: 700;
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
     .month-header:hover { border-color: var(--teal); background: var(--surface-2); }
     .month-header:active { transform: scale(0.99); }
     .month-toggle { font-size: 1rem; transition: transform 0.3s; color: var(--text-2); }
@@ -136,16 +350,70 @@
     .month-expenses { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
     .month-expenses.expanded { max-height: 600px; overflow-y: auto; overflow-x: hidden; }
     .expand-controls { display: flex; gap: 8px; margin-bottom: 14px; }
-    .expand-controls button { flex: 1; padding: 9px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-2); font-size: 0.8rem; cursor: pointer; transition: all 0.2s; letter-spacing: 0.03em; }
+    .expand-controls button {
+        flex: 1;
+        padding: 9px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        color: var(--text-2);
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        letter-spacing: 0.03em;
+    }
     .expand-controls button:hover { border-color: var(--teal); color: var(--teal); }
-    .ritmo-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 16px; position: relative; overflow: hidden; }
-    .ritmo-card::before { content: ''; position: absolute; left: 0; top: 12px; bottom: 12px; width: 3px; background: var(--amber); border-radius: 0 3px 3px 0; opacity: 0.7; }
+
+    /* ── RITMO / GAUGE ────────────────────── */
+    .ritmo-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 20px;
+        margin-bottom: 16px;
+        position: relative;
+        overflow: hidden;
+    }
+    .ritmo-card::before {
+        content: '';
+        position: absolute;
+        left: 0; top: 12px; bottom: 12px;
+        width: 3px;
+        background: var(--amber);
+        border-radius: 0 3px 3px 0;
+        opacity: 0.7;
+    }
     .ritmo-header { text-align: center; margin-bottom: 16px; }
     .ritmo-title { font-size: 0.8rem; color: var(--text-2); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.07em; }
     .ritmo-gauge { position: relative; width: 100%; margin: 12px 0 8px 0; }
-    .ritmo-bar { position: relative; width: 100%; height: 24px; background: var(--surface-3); border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
-    .ritmo-fill { height: 100%; border-radius: 4px; transition: width 0.5s, background-color 0.5s; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-weight: 700; font-size: 0.8rem; color: #080D1A; }
-    .ritmo-markers { position: relative; margin-top: 6px; font-size: 0.68rem; color: var(--text-3); height: 14px; }
+    .ritmo-bar {
+        position: relative;
+        width: 100%;
+        height: 24px;
+        background: var(--surface-3);
+        border-radius: 4px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+    }
+    .ritmo-fill {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 0.5s, background-color 0.5s;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 10px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        color: #080D1A;
+    }
+    .ritmo-markers {
+        position: relative;
+        margin-top: 6px;
+        font-size: 0.68rem;
+        color: var(--text-3);
+        height: 14px;
+    }
     .ritmo-markers span { position: absolute; transform: translateX(-50%); }
     .ritmo-markers span:nth-child(1) { left: 0%; }
     .ritmo-markers span:nth-child(2) { left: 53.33%; }
@@ -157,9 +425,16 @@
     .ritmo-status-text { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
     .ritmo-status-desc { font-size: 0.82rem; color: var(--text-2); }
     .ritmo-details { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
-    .ritmo-detail-item { background: var(--surface-2); border: 1px solid var(--border); padding: 10px 12px; border-radius: var(--radius-sm); }
+    .ritmo-detail-item {
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        padding: 10px 12px;
+        border-radius: var(--radius-sm);
+    }
     .ritmo-detail-label { font-size: 0.7rem; color: var(--text-2); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
     .ritmo-detail-value { font-size: 1rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+    /* ── GAUGE SVG ────────────────────────── */
     .gauge-container { display: flex; justify-content: center; align-items: center; margin: 16px 0; }
     .gauge { position: relative; width: 180px; height: 180px; }
     .gauge-circle { transform: rotate(-90deg); }
@@ -175,14 +450,28 @@
     .gauge-info-item { text-align: center; }
     .gauge-info-label { font-size: 0.7rem; color: var(--text-2); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.05em; }
     .gauge-info-value { font-size: 1rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+    /* ── LOADING ──────────────────────────── */
     .loading { text-align: center; padding: 60px; font-size: 1rem; color: var(--text-2); letter-spacing: 0.05em; }
+
+    /* ── CATEGORY LIST ────────────────────── */
     .category-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
-    .category-item { background: var(--surface-2); padding: 10px; border-radius: var(--radius-sm); text-align: center; cursor: pointer; transition: all 0.2s; border: 1px solid var(--border); }
+    .category-item {
+        background: var(--surface-2);
+        padding: 10px;
+        border-radius: var(--radius-sm);
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: 1px solid var(--border);
+    }
     .category-item.selected { border-color: var(--teal); background: var(--teal-dim); }
     .category-item:active { transform: scale(0.96); }
     .category-icon { font-size: 1.6rem; margin-bottom: 4px; }
     .category-name { font-size: 0.78rem; font-weight: 600; color: var(--text-2); }
     .category-item.selected .category-name { color: var(--teal); }
+
+    /* ── CATEGORY CHART ──────────────────── */
     .category-chart { margin-top: 16px; }
     .category-bar { margin-bottom: 12px; cursor: pointer; transition: 0.2s; padding: 8px; border-radius: var(--radius-sm); }
     .category-bar:hover { background: var(--surface-2); transform: translateX(4px); }
@@ -190,15 +479,34 @@
     .category-bar-header { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.88rem; }
     .category-bar-fill { height: 6px; background: var(--surface-3); border-radius: 3px; overflow: hidden; }
     .category-bar-progress { height: 100%; border-radius: 3px; transition: width 0.5s; }
-    .modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.75); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 20px; backdrop-filter: blur(4px); }
-    .modal-content { background: var(--surface); border: 1px solid var(--border-2); border-radius: var(--radius-lg); padding: 24px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; }
+
+    /* ── MODAL ────────────────────────────── */
+    .modal {
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.75);
+        display: flex; align-items: center; justify-content: center;
+        z-index: 1000; padding: 20px;
+        backdrop-filter: blur(4px);
+    }
+    .modal-content {
+        background: var(--surface);
+        border: 1px solid var(--border-2);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        max-width: 500px; width: 100%;
+        max-height: 90vh; overflow-y: auto;
+    }
     .modal-header { font-size: 1.2rem; font-weight: 700; margin-bottom: 18px; text-align: center; }
     .modal-buttons { display: flex; gap: 10px; margin-top: 18px; }
     .modal-buttons .btn { flex: 1; }
+
+    /* ── SCROLLBAR ────────────────────────── */
     .month-expenses.expanded::-webkit-scrollbar { width: 4px; }
     .month-expenses.expanded::-webkit-scrollbar-track { background: transparent; }
     .month-expenses.expanded::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 4px; }
     .month-expenses.expanded::-webkit-scrollbar-thumb:hover { background: var(--text-3); }
+
+    /* ── ANIMATIONS ───────────────────────── */
     @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 </style>
@@ -790,26 +1098,70 @@
     }
 
     function parseSMS(text) {
-        const patterns = [
-            // Padrão genérico AED - aceita qualquer número de cartão
-            /(?:AED|aed)\s*([\d,\.]+).*?on\s+([\d\/]+)\s+([\d:]+).*?at\s+([^,]+)/i,
-            // Padrão R$/USD/EUR
-            /(?:R\$|USD|EUR)\s*([\d,\.]+).*?(\d{2}\/\d{2}\/\d{4}).*?(\d{2}:\d{2}:\d{2}).*?(?:at|em)\s+([^,\.]+)/i,
-            // Padrão alternativo para diferentes formatos
-            /(?:valor|value|amount).*?([\d,\.]+).*?(?:data|date).*?(\d{2}\/\d{2}\/\d{4}).*?(\d{2}:\d{2}:\d{2}).*?(?:estabelecimento|merchant).*?([^\n]+)/i,
-        ];
-        for (let p of patterns) {
-            const m = text.match(p);
-            if (m) {
-                return {
-                    amount: parseFloat(m[1].replace(',', '')),
-                    date: m[2],
-                    time: m[3],
-                    merchant: m[4].trim(),
-                    id: Date.now()
-                };
-            }
+        // Helpers para data/hora atual (usados quando o SMS não tem data)
+        function todayDate() {
+            const d = new Date();
+            return String(d.getDate()).padStart(2,'0') + '/' +
+                   String(d.getMonth()+1).padStart(2,'0') + '/' +
+                   d.getFullYear();
         }
+        function nowTime() {
+            const d = new Date();
+            return String(d.getHours()).padStart(2,'0') + ':' +
+                   String(d.getMinutes()).padStart(2,'0') + ':' +
+                   String(d.getSeconds()).padStart(2,'0');
+        }
+
+        // ── Padrão 1 (Lucas/Etihad): "Purchase of AED 355.00 with Credit Card ending 3783 at MIYABI SUSHI, DUBAI"
+        // Sem data no SMS — usa data/hora actual
+        const m1 = text.match(/Purchase\s+of\s+AED\s*([\d,\.]+).*?at\s+([^,]+)/i);
+        if (m1) {
+            return {
+                amount: parseFloat(m1[1].replace(/,/g, '')),
+                date: todayDate(),
+                time: nowTime(),
+                merchant: m1[2].trim(),
+                id: Date.now()
+            };
+        }
+
+        // ── Padrão 2 (André/ADCB): "Your Cr.Card XXXXX was used for AED34.65 on 03/12/2025 16:20:26 at MERCHANT"
+        // Tem data e hora no SMS
+        const m2 = text.match(/(?:AED|aed)\s*([\d,\.]+).*?on\s+([\d\/]+)\s+([\d:]+).*?at\s+([^,]+)/i);
+        if (m2) {
+            return {
+                amount: parseFloat(m2[1].replace(/,/g, '')),
+                date: m2[2],
+                time: m2[3],
+                merchant: m2[4].trim(),
+                id: Date.now()
+            };
+        }
+
+        // ── Padrão 3: R$/USD/EUR com data e hora
+        const m3 = text.match(/(?:R\$|USD|EUR)\s*([\d,\.]+).*?(\d{2}\/\d{2}\/\d{4}).*?(\d{2}:\d{2}:\d{2}).*?(?:at|em)\s+([^,\.]+)/i);
+        if (m3) {
+            return {
+                amount: parseFloat(m3[1].replace(/,/g, '')),
+                date: m3[2],
+                time: m3[3],
+                merchant: m3[4].trim(),
+                id: Date.now()
+            };
+        }
+
+        // ── Padrão 4: formato valor/data/estabelecimento genérico
+        const m4 = text.match(/(?:valor|value|amount).*?([\d,\.]+).*?(?:data|date).*?(\d{2}\/\d{2}\/\d{4}).*?(\d{2}:\d{2}:\d{2}).*?(?:estabelecimento|merchant).*?([^\n]+)/i);
+        if (m4) {
+            return {
+                amount: parseFloat(m4[1].replace(/,/g, '')),
+                date: m4[2],
+                time: m4[3],
+                merchant: m4[4].trim(),
+                id: Date.now()
+            };
+        }
+
         return null;
     }
 
@@ -867,12 +1219,13 @@
             btn.disabled = false;
             btn.textContent = 'Extrair e Adicionar';
         }
-
+        
         if (success) {
             // ✅ OTIMIZAÇÃO: Atualizar state localmente sem recarregar tudo do servidor
-            parsed.id = String(parsed.id);
+            parsed.id = String(parsed.id); // Garantir mesmo tipo que vem do servidor
             state.expenses.push(parsed);
             updateCache();
+
             state.sms = '';
             state.obs = '';
             state.selectedCategory = null;
@@ -886,14 +1239,14 @@
     async function deleteExpense(id) {
         if (confirm('Excluir esta despesa?')) {
             const success = await deleteExpenseFromSheets(id);
-
+            
             if (success) {
                 // ✅ OTIMIZAÇÃO: Remover localmente sem recarregar tudo
                 state.expenses = state.expenses.filter(e => String(e.id) !== String(id));
                 updateCache();
                 render();
             } else {
-                showToast('❌ Erro ao deletar. Tente novamente.', 'error');
+                alert('❌ Erro ao deletar. Tente novamente.');
             }
         }
     }
@@ -915,17 +1268,17 @@
         if (!state.editingExpense) return;
 
         const success = await updateExpenseInSheets(state.editingExpense);
-
+        
         if (success) {
             // ✅ OTIMIZAÇÃO: Atualizar localmente sem recarregar tudo
             const idx = state.expenses.findIndex(e => String(e.id) === String(state.editingExpense.id));
             if (idx !== -1) state.expenses[idx] = { ...state.editingExpense };
             updateCache();
             state.editingExpense = null;
+            alert('✅ Despesa atualizada com sucesso!');
             render();
-            showToast('✅ Despesa atualizada com sucesso!');
         } else {
-            showToast('❌ Erro ao atualizar. Tente novamente.', 'error');
+            alert('❌ Erro ao atualizar. Tente novamente.');
         }
     }
 
@@ -1302,8 +1655,10 @@
             const result = await response.json();
             
             if (result.success) {
+                // ✅ OTIMIZAÇÃO: Inserir fixa localmente sem recarregar tudo
+                state.fixedExpenses.push(fixedExpense);
+                updateCache();
                 alert('✅ Despesa fixa adicionada!');
-                await loadData(true); // ← FORÇAR REFRESH
                 
                 // Limpar campos
                 document.getElementById('fixedName').value = '';
@@ -1718,7 +2073,7 @@
         state.saving = true;
         btn.disabled = true;
         btn.textContent = 'Salvando...';
-
+        
         const expense = {
             id: Date.now(),
             amount: parseFloat(amount),
@@ -1738,7 +2093,7 @@
 
         if (success) {
             // ✅ OTIMIZAÇÃO: Atualizar state localmente sem recarregar tudo do servidor
-            expense.id = String(expense.id);
+            expense.id = String(expense.id); // Garantir mesmo tipo que vem do servidor
             state.expenses.push(expense);
             updateCache();
             // Limpar campos
@@ -2444,11 +2799,11 @@
             ">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
                     <div>
-                        <h3 style="margin: 0; font-size: 1.15rem; font-weight: 700; color: #F0F4FF;">
+                        <h3 style="margin: 0; font-size: 1.3rem;">
                             ${category.icon} ${category.name}
                         </h3>
                         ${selectedMonth ? `
-                            <div style="font-size: 0.8rem; color: #94A3B8; margin-top: 4px;">
+                            <div style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">
                                 📅 ${formatMonthYear(selectedMonth)}
                             </div>
                         ` : ''}
@@ -2469,16 +2824,14 @@
                 </div>
                 
                 <div style="
-                    background: #162035;
-                    border: 1px solid rgba(255,255,255,0.07);
-                    border-left: 3px solid ${category.color};
-                    border-radius: 10px;
-                    padding: 16px;
-                    margin-bottom: 18px;
+                    background: rgba(0,0,0,0.8);
+                    border-radius: 12px;
+                    padding: 15px;
+                    margin-bottom: 20px;
                 ">
-                    <div style="font-size: 0.72rem; color: #94A3B8; margin-bottom: 6px; text-align: center; text-transform: uppercase; letter-spacing: 0.07em;">Total da Categoria</div>
-                    <div style="font-size: 1.9rem; font-weight: 700; text-align: center; font-variant-numeric: tabular-nums; color: #F0F4FF;">AED ${totalCategory.toFixed(2)}</div>
-                    <div style="font-size: 0.75rem; color: #94A3B8; margin-top: 5px; text-align: center;">
+                    <div style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 5px; text-align: center;">Total da Categoria</div>
+                    <div style="font-size: 1.8rem; font-weight: 700; text-align: center;">AED ${totalCategory.toFixed(2)}</div>
+                    <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 5px; text-align: center;">
                         ${categoryExpenses.length} transações em ${sortedMerchants.length} estabelecimentos
                     </div>
                     
@@ -2499,15 +2852,15 @@
                             
                             return `
                                 <div style="text-align: center;">
-                                    <div style="font-size: 0.68rem; color: #94A3B8; margin-bottom: 3px; text-transform: uppercase;">Média</div>
+                                    <div style="font-size: 0.68rem; color: #94A3B8; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.05em;">Média</div>
                                     <div style="font-size: 0.9rem; font-weight: 700; font-variant-numeric: tabular-nums;">AED ${avgAmount.toFixed(2)}</div>
                                 </div>
                                 <div style="text-align: center;">
-                                    <div style="font-size: 0.68rem; color: #94A3B8; margin-bottom: 3px; text-transform: uppercase;">Maior</div>
+                                    <div style="font-size: 0.68rem; color: #94A3B8; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.05em;">Maior</div>
                                     <div style="font-size: 0.9rem; font-weight: 700; font-variant-numeric: tabular-nums; color: #EF4444;">AED ${maxAmount.toFixed(2)}</div>
                                 </div>
                                 <div style="text-align: center;">
-                                    <div style="font-size: 0.68rem; color: #94A3B8; margin-bottom: 3px; text-transform: uppercase;">Menor</div>
+                                    <div style="font-size: 0.68rem; color: #94A3B8; margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.05em;">Menor</div>
                                     <div style="font-size: 0.9rem; font-weight: 700; font-variant-numeric: tabular-nums; color: #00D4AA;">AED ${minAmount.toFixed(2)}</div>
                                 </div>
                             `;
@@ -2524,9 +2877,9 @@
                         const percentage = (merchant.total / totalCategory) * 100;
                         return `
                             <div style="
-                                background: #162035;
-                                border-radius: 8px;
-                                padding: 13px;
+                                background: rgba(255,255,255,0.1);
+                                border-radius: 12px;
+                                padding: 15px;
                                 border: 1px solid rgba(255,255,255,0.07);
                             ">
                                 <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
@@ -3107,8 +3460,8 @@
                                             ${monthsWithData.length} ${monthsWithData.length === 1 ? 'mês' : 'meses'} com dados
                                         </div>
                                     </div>
-                                    <div style="text-align: right;">
-                                        <div style="font-size: 2rem; font-weight: 700; color: ${isOnTrack ? '#22c55e' : '#ef4444'};">
+                                    <div style="text-align: right; min-width: 0;">
+                                        <div style="font-size: 1.3rem; font-weight: 700; color: ${isOnTrack ? '#22c55e' : '#ef4444'}; word-break: break-all;">
                                             ${formatAED(yearlyEconomy)}
                                         </div>
                                         <div style="font-size: 0.75rem; opacity: 0.7; margin-top: 5px;">
@@ -3139,9 +3492,10 @@
                                         Meta: ${formatAED(state.yearlyGoal)}
                                     </div>
                                     <div style="
-                                        font-size: 0.9rem;
+                                        font-size: 0.8rem;
                                         font-weight: 700;
                                         color: ${remaining > 0 ? '#fbbf24' : '#22c55e'};
+                                        text-align: right;
                                     ">
                                         ${remaining > 0 ? 'Faltam' : 'Superou em'}: ${formatAED(Math.abs(remaining))}
                                     </div>
@@ -3600,7 +3954,7 @@
                             onclick="toggleManualEntry()"
                             style="
                                 background: rgba(255,255,255,0.1);
-                                border: 1px solid rgba(255,255,255,0.2);
+                                border: 1px solid rgba(255,255,255,0.07);
                                 color: white;
                                 padding: 6px 12px;
                                 border-radius: 8px;
@@ -3633,14 +3987,16 @@
                                         gap: 4px;
                                     "
                                     onmouseover="this.style.background='rgba(0,212,170,0.15)'; this.style.color='#00D4AA';"
-                                    onmouseout="this.style.background='rgba(0,212,170,0.05)'; this.style.color='rgba(255,255,255,0.5)';"
+                                    onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.color='rgba(255,255,255,0.5)';"
                                 >
                                     📋 Colar
                                 </button>
                             </div>
                             <textarea id="smsInput" placeholder="Cole aqui o SMS..." oninput="state.sms=this.value">${state.sms}</textarea>
                             <div style="font-size:0.8rem; opacity:0.7; margin-top:8px;">
-                                Exemplo: Your Cr.Card XXXXX was used for AED34.65 on 03/12/2025 16:20:26 at ALMAQAM AUTOMATIC BR...
+                            <div style="font-size:0.8rem; opacity:0.7; margin-top:8px;">
+                                Exemplo: Purchase of AED 716.55 with Credit Card ending xxxx at e& Digital App, Abu Dhabi. Avl Cr.......
+                            </div>
                             </div>
                         </div>
                     ` : `
